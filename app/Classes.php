@@ -15,7 +15,7 @@ class Classes extends Model
         'divisi_id'  => 'required',
         // .. more rules here ..
 
-    };
+    );
 
     public function validate($data)
     {
@@ -25,6 +25,10 @@ class Classes extends Model
         $this->v = $v;
         // return the result
         return $result;
+    }
+    public function divisi()
+    {
+        return $this->belongsTo('App\Divisi', 'divisi_id', 'id_divisi');
     }
 
     public function get_validataion_msg() {

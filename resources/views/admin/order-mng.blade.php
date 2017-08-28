@@ -32,11 +32,13 @@
           <table class="table table-hover">
             <tr>
               <th>Date</th>
+              <th>Date Expire</th>
               <th>No Order</th>
               <th>Type</th>
               <th></th>
             </tr>
             <tr>
+              <td>10 Aug 2017</td>
               <td>10 Aug 2017</td>
               <td>1</td>
               <td><span class="label label-warning">Isolate Analysis</span></td>
@@ -45,6 +47,7 @@
               </td>
             </tr>
             <tr>
+              <td>10 Aug 2017</td>
               <td>10 Aug 2017</td>
               <td>2</td>
               <td><span class="label label-primary">Isolate Ordering</span></td>

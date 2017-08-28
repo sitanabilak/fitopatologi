@@ -12,7 +12,6 @@ class Updating extends Model
 
      private $rules = array(
         'date_updating' => 'required',
-        'cendawan_id'  => 'required',
     );
 
     public function validate($data)

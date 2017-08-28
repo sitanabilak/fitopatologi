@@ -16,11 +16,11 @@
         User
         <small>Management</small>
       </h1>
-      <ol class="breadcrumb">
+     <!--  <ol class="breadcrumb">
         <li><a href="{{ route('user-mng') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <!-- <li><a href="#">Layout</a></li>
-        <li class="active">Fixed</li> -->
-      </ol>
+        <li><a href="#">Layout</a></li>
+        <li class="active">Fixed</li>
+      </ol> -->
     </section>
 
     <!-- Main content -->
@@ -78,7 +78,10 @@
               <td id="user-username">{{ $user->username }}</td>
               <td id="user-email">{{ $user->email }}</td>
               <td>
+                <input type="hidden" name="_method" value="delete">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <button type="submit" class="btn btn-sm btn-primary" href="{{ route('fungi-edit') }}" onClick="edit_user({{ $user->id_users }})">Edit</button>
+                <a type="submit" data-method="delete" class="btn btn-sm btn-danger" href="delete/{{ $users->id_users }}">Delete</a>
                 </div>
               </td>
             </tr>
@@ -104,6 +107,8 @@
               $(".user-role").find("input[name=id_usertype]").attr('checked', "");
               $(".user-role").find("input[name=id_usertype][value="+role+"]").prop('checked', true);
               // $('input[name=id_usertype][value="2"]').attr('checked', true);
+
+              $(".user-id-user").last().val(id_user);
 
               instansi_user = $("#user-"+id_user + " > #user-instansi-user").text();
               $(".user-instansi-user").last().val(instansi_user);

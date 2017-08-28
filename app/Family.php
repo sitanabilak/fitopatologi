@@ -25,7 +25,10 @@ class Family extends Model
         // return the result
         return $result;
     }
-
+    public function ordo()
+    {
+        return $this->belongsTo('App\Ordo', 'ordo_id', 'id_ordo');
+    }
     public function get_validataion_msg() {
     	return $this->v->messages();
     }

@@ -30,7 +30,7 @@
             <div class="inner">
               <h3><span>{{ (count($fungi_list)) }}</span></h3>
 
-              <p>fungi Collections</p>
+              <p>Fungi Collections</p>
             </div>
             <div class="icon">
               <i class="ion ion-leaf"></i>
@@ -41,9 +41,23 @@
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3><span>{{ (count($unverified)) }}</span></h3>
+
+              <p>Unverified Fungi</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-leaf"></i>
+            </div>
+            <a href="{{ route('fungi-add') }}" class="small-box-footer">Add Collection <i class="fa fa-plus-circle"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3><span>{{ (count($count1)) }}</span></h3>
+              <h3><span>{{ count($users) }}</span></h3>
 
               <p>Users</p>
             </div>
@@ -58,7 +72,7 @@
           <!-- small box -->
           <div class="small-box bg-blue">
             <div class="inner">
-              <h3><span>{{ (count($count2)) }}</span></h3>
+              <h3><span>{{ count($customer) }}</span></h3>
 
               <p>User Registrations</p>
             </div>

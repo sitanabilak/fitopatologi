@@ -9,12 +9,12 @@
           Phitopatology
           <small>Information System</small>
         </h1>
-        <ol class="breadcrumb">
+        <!-- <ol class="breadcrumb">
             <li><a href="{{ route('fungi') }}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="{{ route('fungi-detail') }}">Detail</a></li>
-            <!-- <li class="active">Fixed</li> -->
+            <li class="active">Fixed</li>
         </ol>
-
+ -->
       </section>
       &nbsp;
       <!-- Main content -->

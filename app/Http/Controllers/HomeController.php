@@ -4,7 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-
+use App\Isolat;
+use App\Species;
+use App\Location;
+use App\Photo;
+use App\Storage;
+use App\Updating;
+use App\Substrat;
 class HomeController extends Controller
 {
     /**
@@ -25,10 +31,10 @@ class HomeController extends Controller
     public function uindex1()
     {
 
-        $fungi_list= DB::table('isolat_cendawan')->orderBy('name_cendawan')->where('status_verifiedData', 1)->get();
+        $isolat_cendawan= DB::table('isolat_cendawan')->orderBy('name_cendawan')->where('status_verifiedData', 1)->get();
         $coba = "test";
 
-        return view('user/fungi/base', ['fungi_list' => $fungi_list, 'coba' => $coba]);
+        return view('user/fungi/base', ['isolat_cendawan' => $isolat_cendawan, 'coba' => $coba]);
     }
     public function uindex2()
     {
@@ -44,5 +50,18 @@ class HomeController extends Controller
         return view('customer/service/base');
     }
     
+    public function view(Request $request)
+    {
+        $id_isolat = $request->id;
+        $isolat_cendawan = Isolat::where('id_cendawan', $id_isolat)->first();
+        $species = Species::where('id_species', $isolat_cendawan->species_id)->first();
+        $substrat = Substrat::where('id_substrat', $species->substrat_id)->first();
+        $location = Location::where('id_location', $isolat_cendawan->location_id)->first();
+        $photo = Photo::where('id_photo', $isolat_cendawan->photo_id)->first();
+        $storage = Storage::where('id_storage', $isolat_cendawan->storage_id)->first();
+        $updating = Updating::where('id_updating', $isolat_cendawan->updating_id)->first();
+
+        return view('user/fungi-detail', ['isolat_cendawan' => $isolat_cendawan, 'species' => $species, 'location' => $location, 'photo' => $photo,'storage' => $storage, 'updating' => $updating, 'substrat' => $substrat]);
+    }
     
 }

@@ -25,6 +25,10 @@ class Ordo extends Model
         // return the result
         return $result;
     }
+    public function classes()
+    {
+        return $this->belongsTo('App\Classes', 'class_id', 'id_class');
+    }
 
     public function get_validataion_msg() {
     	return $this->v->messages();

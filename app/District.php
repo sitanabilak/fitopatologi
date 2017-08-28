@@ -26,6 +26,11 @@ class District extends Model
         return $result;
     }
 
+    public function city()
+    {
+        return $this->belongsTo('App\City', 'id_city', 'id_city');
+    }
+
     public function get_validataion_msg() {
     	return $this->v->messages();
     }

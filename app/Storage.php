@@ -27,6 +27,15 @@ class Storage extends Model
         return $result;
     }
 
+    public function isolator()
+    {
+        return $this->belongsTo('App\Isolator', 'isolator_id', 'id_isolator');
+    }
+    public function raiser()
+    {
+        return $this->belongsTo('App\Raiser', 'raiser_id', 'id_raiser');
+    }
+
     public function get_validataion_msg() {
     	return $this->v->messages();
     }

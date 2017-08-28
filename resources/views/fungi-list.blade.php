@@ -3,7 +3,7 @@
 	 <h3 class="box-title text-success">Fungi Collections</h3>
     <div class="collection-index" style="padding-left:50px;padding-right:50px;">
   	<div class="box-header">
-  		<h4 class="number"><em>Number of species:</em> <span>{{ (count($fungi_list)) }}</span></h4>
+  		<h4 class="number"><em>Number of species:</em> <span>{{ (count($isolat_cendawan)) }}</span></h4>
 
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -25,9 +25,9 @@
             </thead>
             <tbody>
             <?php 
-              foreach ($fungi_list as $i => $fungi) { ?>
+              foreach ($isolat_cendawan as $i => $fungi) { ?>
             	<?php if ($i%3 ==0) echo '<tr>'; ?>
-            		<td><a class="lead" href="{{ route('fungi-detail') }}"><i><?= $fungi->name_cendawan ?></i></a></td>
+            		<td><a class="lead" href="{{ route('fungi-detail') }}?id={{$fungi->id_cendawan}}"><i><?= $fungi->name_cendawan ?></i></a></td>
             	<?php if ($i%3 ==2) echo '</tr>'; ?>
             <?php } ?>     
             </tbody>

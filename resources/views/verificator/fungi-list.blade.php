@@ -27,14 +27,14 @@
           </thead>
           <tbody>
             <?php $i = 0 ?>
-            @foreach($fungi_list as $key => $fungi)
+            @foreach($isolat_cendawan as $key => $fungi)
             <?php $i++ ?>
             <tr>
               <td>{{ $i }}</td>
               <td>{{ $fungi->code_cendawan }}</td>
               <td><i>{{ $fungi->name_cendawan }}</i></td>
               <td>
-                <button type="submit" class="btn btn-sm btn-primary" href="{{ route('v-fungi-view') }}">View Detail</button>
+                <a class="btn btn-sm btn-primary" href="{{ route('v-fungi-view') }}?id={{$fungi->id_cendawan}}">View Detail</a>
               </td>
             </tr>
             @endforeach

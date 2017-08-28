@@ -70,7 +70,7 @@
                   </div>
                 </div>
                 </div>
-                <div class="box-body pad table-responsive">
+              <div class="box-body pad table-responsive">
                 <div class="box box-solid">
                   <!-- /.box-header -->
                   <div class="box-body">
@@ -90,30 +90,50 @@
                               <i><p class="text-muted">Species Name:</p></i>
                             </h5>
                               <h4 style="padding-left:30px;"><i>{{ $isolat_cendawan->name_cendawan }}</i></h4>
+
                               <?php if (isset($species->genus)) { ?>
                             <h5 class="box-title">
                               <i><p class="text-muted">Genus:</p></i>
                             </h5>
                               <h4 style="padding-left:30px;">{{ $species->genus->name_genus}}</h4>
+
                               <?php if (isset($species->genus->family)) { ?>
                             <h5 class="box-title">
                               <i><p class="text-muted">Family:</p></i>
                             </h5>
                               <h4 style="padding-left:30px;">{{$species->genus->family->name_family}}</h4>
+
+                              <?php if (isset($species->genus->family->ordo)) { ?>
                             <h5 class="box-title">
                               <i><p class="text-muted">Ordo:</p></i>
                             </h5>
-                              <h4 style="padding-left:30px;">Asdf</h4>
+                              <h4 style="padding-left:30px;">{{$species->genus->family->ordo->name_ordo}}</h4>
+
+                              <?php if (isset($species->genus->family->ordo->classes)) { ?>
                             <h5 class="box-title">
                               <i><p class="text-muted">Class:</p></i>
                             </h5>
-                              <h4 style="padding-left:30px;">Asdf</h4>
+                              <h4 style="padding-left:30px;">{{$species->genus->family->ordo->classes->name_class}}</h4>
+
+                              <?php if (isset($species->genus->family->ordo->classes->divisi)) { ?>
                             <h5 class="box-title">
                               <i><p class="text-muted">Division:</p></i>
                             </h5>
-                              <h4 style="padding-left:30px;">Asdf</h4>
+                              <h4 style="padding-left:30px;">{{$species->genus->family->ordo->classes->divisi->name_divisi}}</h4>
 
-                              <?php }} ?>
+                              <?php if (isset($species)) { ?>
+                            <h5 class="box-title">
+                              <i><p class="text-muted">Description:</p></i>
+                            </h5>
+                              <h4 style="padding-left:30px;">{{$species->description_species}}</h4>
+
+                              <?php if (isset($isolat_cendawan->utilization)) { ?>
+                            <h5 class="box-title">
+                              <i><p class="text-muted">Utilization:</p></i>
+                            </h5>
+                              <h4 style="padding-left:30px;">{{$isolat_cendawan->utilization}}</h4>
+
+                              <?php }}}}}}} ?>
                           </div>
                         </div>
                       </div>
@@ -130,23 +150,33 @@
                             <h5 class="box-title">
                               <i><p class="text-muted">Substrat Name:</p></i>
                             </h5>
-                              <h4 style="padding-left:30px;">Banana</h4>
+                              <h4 style="padding-left:30px;">{{ $substrat->name_substrat }}</h4>
+
+                              <?php if (isset($species->substrat)) { ?>
                             <h5 class="box-title">
                               <i><p class="text-muted">Ecology:</p></i>
                             </h5>
-                              <h4 style="padding-left:30px;">Asdf</h4>
+                              <h4 style="padding-left:30px;">{{ $substrat->ecology }}</h4>
+
+                              <?php if (isset($species->substrat)) { ?>
                             <h5 class="box-title">
                               <i><p class="text-muted">Biology:</p></i>
                             </h5>
-                              <h4 style="padding-left:30px;">Asdf</h4>
+                              <h4 style="padding-left:30px;">{{ $substrat->biology }}</h4>
+
+                              <?php if (isset($species->substrat)) { ?>
                             <h5 class="box-title">
                               <i><p class="text-muted">Physiology:</p></i>
                             </h5>
-                              <h4 style="padding-left:30px;">Asdf</h4>
+                              <h4 style="padding-left:30px;">{{ $substrat->physiology }}</h4>
+
+                              <?php if (isset($species->substrat)) { ?>
                             <h5 class="box-title">
                               <i><p class="text-muted">Mycotoxin:</p></i>
                             </h5>
-                              <h4 style="padding-left:30px;">Asdf</h4>
+                              <h4 style="padding-left:30px;">{{ $substrat->mycotoxin }}</h4>
+
+                              <?php }}}} ?>
                           </div>
                         </div>
                       </div>
@@ -160,22 +190,32 @@
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse in" style="padding-left:20px;">
                           <div class="box-body">
+
+                              <?php if (isset($location->district)) { ?>
                             <h5 class="box-title">
                               <i><p class="text-muted">District:</p></i>
                             </h5>
-                              <h4 style="padding-left:30px;">Asdf</h4>
+                              <h4 style="padding-left:30px;">{{ $location->district->name_district }}</h4>
+
+                              <?php if (isset($location->district->city)) { ?>
                             <h5 class="box-title">
                               <i><p class="text-muted">city:</p></i>
                             </h5>
-                              <h4 style="padding-left:30px;">Bogor</h4>
+                              <h4 style="padding-left:30px;">{{ $location->district->city->name_city }}</h4>
+
+                              <?php if (isset($location->district->city->province)) { ?>
                             <h5 class="box-title">
                               <i><p class="text-muted">Province:</p></i>
                             </h5>
-                              <h4 style="padding-left:30px;">West Java</h4>
+                              <h4 style="padding-left:30px;">{{ $location->district->city->province->name_province }}</h4>
+
+                              <?php if (isset($location->district->city->province->state)) { ?>
                             <h5 class="box-title">
                               <i><p class="text-muted">State:</p></i>
                             </h5>
-                              <h4 style="padding-left:30px;">Indonesia</h4>
+                              <h4 style="padding-left:30px;">{{ $location->district->city->province->state->name_state }}</h4>
+
+                              <?php }}}} ?>
                           </div>
                         </div>
                       </div>
@@ -188,9 +228,11 @@
                           </h5>
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse in" style="padding-left:20px;">
+                          <?php if (isset($storage->isolator)) { ?>
                           <div class="box-body">
-                              <h4 style="padding-left:30px;">Varin</h4>
+                              <h4 style="padding-left:30px;">{{ $storage->isolator->name_isolator }}</h4>
                           </div>
+                          <?php } ?>
                         </div>
                       </div>
                       <div class="panel box box-default">
@@ -202,9 +244,11 @@
                           </h5>
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse in" style="padding-left:20px;">
+                          <?php if (isset($storage->raiser)) { ?>
                           <div class="box-body">
-                              <h4 style="padding-left:30px;">Nijma</h4>
+                              <h4 style="padding-left:30px;">{{ $storage->raiser->name_raiser }}</h4>
                           </div>
+                          <?php } ?>
                         </div>
                       </div>
                       <div class="panel box box-default">
@@ -216,9 +260,11 @@
                           </h5>
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse in" style="padding-left:20px;">
+                          <?php if (isset($updating)) { ?>
                           <div class="box-body">
-                              <h4 style="padding-left:30px;">24 Feb 2015</h4>
+                              <h4 style="padding-left:30px;">{{ $updating->date_updating }}</h4>
                           </div>
+                          <?php } ?>
                         </div>
                       </div>
                     </div>

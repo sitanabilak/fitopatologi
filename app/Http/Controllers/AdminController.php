@@ -29,9 +29,9 @@ class AdminController extends Controller
 
         $fungi_list= DB::table('isolat_cendawan')->orderBy('name_cendawan')->get();
         $users= DB::table('users')->orderBy('lengthName')->get();
-        $count1 = DB::table('users')->where('typeuser_id', '!=', 4)->get();
-        $count2 = DB::table('users')->where('typeuser_id', 4)->get();
-        return view('admin/dashboard',  ['fungi_list' => $fungi_list, 'users' => $users, 'count1' => $count1, 'count2' => $count2]);
+        $customer= DB::table('customer')->orderBy('name_customer')->get();
+        $unverified= DB::table('isolat_cendawan')->where('status_verifiedData', 0)->get();
+        return view('admin/dashboard',  ['fungi_list' => $fungi_list, 'users' => $users, 'customer' => $customer, 'unverified' => $unverified]);
     }
     public function index()
     {
@@ -45,12 +45,19 @@ class AdminController extends Controller
     {  
         $input = $request->all();
 
-        $users = new Users;       
+        $users = new Users;
         $error_msg = "";
+        if(isset($input["id_users"]))  $input["password"] = "password";
         if($users->validate($input)) {
 
-            try {
-                $users = new Users;
+            try { 
+                if(isset($input["id_users"])){
+                    $users = Users::where('id_users', $input['id_users'])->first(); 
+                    $input["password"] = $users->password;
+                }
+                else{
+                    $users = new Users;
+                }   
                 $users->lengthName = $input["lengthName"];
                 $users->instansi_user = $input["instansi_user"];
                 $users->email = $input["email"];
@@ -58,6 +65,8 @@ class AdminController extends Controller
                 $users->password = $input["password"];
                 $users->id_usertype = $input["id_usertype"];
                 $users->save();
+                // $users->id_users;
+                $input = [];
             }
             catch(\Exception $e){
                // do task when error
@@ -66,6 +75,7 @@ class AdminController extends Controller
         }
         else $error_msg = $users->v->messages()->first(); 
         $users_data= DB::table('users')->orderBy('lengthName')->get();
+
 
         return view('admin/user-mng',['input' => $input, 'error_msg' => $error_msg, 'users_data' => $users_data]);
     }
@@ -82,6 +92,18 @@ class AdminController extends Controller
         // $roles = new Role;
         // return response()->json($roles);
         return view('admin/user-mng', ['roles' => $roles]);
+    }
+
+    public function destroy($id_users)
+    {
+        $delete = Users::where('id_users', $id_users);
+        if($delete == null || count($delete) == 0)
+        {
+            return redirect()->intended('/user-mng');
+        }
+        $delete->delete();
+
+        return redirect()->intended('/user-mng')->with(['message' => 'Successfuly deleted!']);
     }
     
     public function indexorder()

@@ -8,6 +8,7 @@ use Validator;
 class Location extends Model
 {
     protected $table = 'location';
+    protected $primaryKey = 'id_location';
     public $timestamps = false;
 
      private $rules = array(
@@ -26,6 +27,11 @@ class Location extends Model
         $this->v = $v;
         // return the result
         return $result;
+    }
+
+    public function district()
+    {
+        return $this->belongsTo('App\District', 'district_id', 'id_district');
     }
 
     public function get_validataion_msg() {

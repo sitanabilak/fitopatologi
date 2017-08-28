@@ -30,4 +30,10 @@ class Role extends Model
 //     public function get_validataion_msg() {
 //     	return $this->v->messages();
 //     }
-}
+    public function users()
+	{
+	  return $this
+	    ->belongsToMany(‘App\User’)
+	    ->withTimestamps();
+	}
+	}

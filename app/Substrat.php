@@ -8,6 +8,7 @@ use Validator;
 class Substrat extends Model
 {
     protected $table = 'substrat';
+    protected $primaryKey = 'id_substrat';
     public $timestamps = false;
 
      private $rules = array(

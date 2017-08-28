@@ -26,6 +26,11 @@ class Province extends Model
         return $result;
     }
 
+    public function state()
+    {
+        return $this->belongsTo('App\State', 'state_id', 'id_state');
+    }
+
     public function get_validataion_msg() {
     	return $this->v->messages();
     }

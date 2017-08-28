@@ -31,6 +31,11 @@ class Species extends Model
         return $this->belongsTo('App\Genus', 'genus_id', 'id_genus');
     }
 
+    public function substrat()
+    {
+        return $this->belongsTo('App\Substrat', 'subsrtat_id', 'id_substrat');
+    }
+
     public function get_validataion_msg() {
     	return $this->v->messages();
     }

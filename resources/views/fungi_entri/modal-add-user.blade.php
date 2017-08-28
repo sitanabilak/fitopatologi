@@ -3,7 +3,7 @@
           <div class="col-md-8">
             <form class="form-horizontal" action="" method="POST">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
-              <input type="hidden" name="id_user" value="{{ $input['id_user'] or ''}}">
+              <input type="hidden" class="user-id-user" name="id_users" value="{{ $input['id_users'] or ''}}">
 
               <div class="form-group">
                 <label for="" class="col-sm-2 control-label">Name</label>

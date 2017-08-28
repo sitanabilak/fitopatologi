@@ -8,6 +8,7 @@ use Validator;
 class Users extends Model
 {
     protected $table = 'users';
+    protected $primaryKey = 'id_users'; // or null
     public $timestamps = false;
 
      private $rules = array(
@@ -19,6 +20,8 @@ class Users extends Model
         'instansi_user'  => 'required',
         'id_usertype'  => 'required',
     );
+
+
 
     public function validate($data)
     {

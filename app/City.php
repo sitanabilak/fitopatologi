@@ -26,6 +26,11 @@ class City extends Model
         return $result;
     }
 
+    public function province()
+    {
+        return $this->belongsTo('App\Province', 'province_id', 'id_province');
+    }
+
     public function get_validataion_msg() {
     	return $this->v->messages();
     }

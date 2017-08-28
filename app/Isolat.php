@@ -8,21 +8,21 @@ use Validator;
 class Isolat extends Model
 {
     protected $table = 'isolat_cendawan';
+    protected $primaryKey = 'id_cendawan';
     public $timestamps = false;
 
      private $rules = array(
         'code_cendawan' => 'required',
         'name_cendawan'  => 'required',
-        'number_cendawan'  => 'required',
+        'quantity_cendawan'  => 'required',
         'label_cendawan' => 'required',
         'utilization'  => 'required',
-        'comment_cendawan'  => 'required',
-        'code_cendawan' => 'required',
-        'location_id'  => 'required',
-        'species_id'  => 'required',
-        'photo_id' => 'required',
-        'storage_id'  => 'required',
-        'updating_id'  => 'required',
+        // 'comment_cendawan'  => 'required',
+    //     'location_id'  => 'required',
+    //     'species_id'  => 'required',
+    //     'photo_id' => 'required',
+    //     'storage_id'  => 'required',
+    //     'updating_id'  => 'required',
     );
 
     public function validate($data)

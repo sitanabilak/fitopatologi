@@ -81,9 +81,17 @@
                       <div class="input-group input-group">
                         <input value='{{ $input["name_divisi"] or ""}}' type="species" class="form-control" id="" name="name_divisi" placeholder="name division">
                         <span class="input-group-btn">
-                          <button type="submit" class="btn btn-info btn-flat">Add Division</button>
+                          <button type="submit" class="btn btn-info btn-flat">Add New Division</button>
                         </span>
                       </div>
+                    </div>
+                  </div>
+                  <div class="form-group{{ $errors->has('id_divisi') ? ' has-error' : '' }}">
+                  <p for="id_divisi" class="col-sm-2 control-label">Or</p>
+                    <div class="col-sm-10">
+                      <select class="divisi" style="width: 430px ;  height:34px" id="id_divisi" name="id_divisi" action="{{ route('add-divisi') }}" value="{{ old('id_divisi') }}" autofocus>
+                        <option value="0" disabled="true" selected="true">--Choose a Division--</option>
+                      </select>
                     </div>
                   </div>
                   <div class="form-group">
@@ -92,19 +100,17 @@
                       <div class="input-group input-group">
                         <input value='{{ $input["name_class"] or ""}}' type="species" class="form-control" id="" name="name_class" placeholder="name class">
                         <span class="input-group-btn">
-                          <button type="submit" class="btn btn-info btn-flat">Add Class</button>
+                          <button type="submit" class="btn btn-info btn-flat">Add New Class</button>
                         </span>
                       </div>
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          <!-- <div class="input-group input-group"> -->
-                          <select name="div" minimal class="form-control"  style="width: 100%;">
-                          
-                          </select>
-
-                          <!-- </div> -->
-                        </div>
-                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group{{ $errors->has('id_class') ? ' has-error' : '' }}">
+                  <p for="id_class" class="col-sm-2 control-label">Or</p>
+                    <div class="col-sm-10">
+                      <select class="class" style="width: 430px ;  height:34px" id="id_class" name="id_class" action="{{ route('add-class') }}" value="{{ old('id_class') }}" autofocus>
+                        <option value="0" disabled="true" selected="true">--Choose a Class--</option>
+                      </select>
                     </div>
                   </div>
                   <div class="form-group">
@@ -113,9 +119,17 @@
                       <div class="input-group input-group">
                         <input value='{{ $input["name_ordo"] or ""}}' type="species" class="form-control" id="" name="name_ordo" placeholder="name ordo">
                         <span class="input-group-btn">
-                          <button type="submit" class="btn btn-info btn-flat">Add Ordo</button>
+                          <button type="submit" class="btn btn-info btn-flat">Add New Ordo</button>
                         </span>
                       </div>
+                    </div>
+                  </div>
+                  <div class="form-group{{ $errors->has('id_ordo') ? ' has-error' : '' }}">
+                  <p for="id_ordo" class="col-sm-2 control-label">Or</p>
+                    <div class="col-sm-10">
+                      <select class="ordo" style="width: 430px ;  height:34px" id="id_ordo" name="id_ordo" action="{{ route('add-ordo') }}" value="{{ old('id_ordo') }}" autofocus>
+                        <option value="0" disabled="true" selected="true">--Choose a Ordo--</option>
+                      </select>
                     </div>
                   </div>
                   <div class="form-group">
@@ -124,9 +138,17 @@
                       <div class="input-group input-group">
                         <input value='{{ $input["name_family"] or ""}}' type="species" class="form-control" id="" name="name_family" placeholder="name family">
                         <span class="input-group-btn">
-                          <button type="submit" class="btn btn-info btn-flat">Add Family</button>
+                          <button type="submit" class="btn btn-info btn-flat">Add New Family</button>
                         </span>
                       </div>
+                    </div>
+                  </div>
+                  <div class="form-group{{ $errors->has('id_family') ? ' has-error' : '' }}">
+                  <p for="id_family" class="col-sm-2 control-label">Or</p>
+                    <div class="col-sm-10">
+                      <select class="family" style="width: 430px ;  height:34px" id="id_family" name="id_family" action="{{ route('add-family') }}" value="{{ old('id_family') }}" autofocus>
+                        <option value="0" disabled="true" selected="true">--Choose a Family--</option>
+                      </select>
                     </div>
                   </div>
                   <div class="form-group">
@@ -135,9 +157,17 @@
                       <div class="input-group input-group">
                         <input value='{{ $input["name_genus"] or ""}}' type="species" class="form-control" id="" name="name_genus" placeholder="name genus">
                         <span class="input-group-btn">
-                          <button type="submit" class="btn btn-info btn-flat">Add Genus</button>
+                          <button type="submit" class="btn btn-info btn-flat">Add New Genus</button>
                         </span>
                       </div>
+                    </div>
+                  </div>
+                  <div class="form-group{{ $errors->has('id_genus') ? ' has-error' : '' }}">
+                  <p for="id_genus" class="col-sm-2 control-label">Or</p>
+                    <div class="col-sm-10">
+                      <select class="genus" style="width: 430px ;  height:34px" id="id_genus" name="id_genus" action="{{ route('add-genus') }}" value="{{ old('id_genus') }}" autofocus>
+                        <option value="0" disabled="true" selected="true">--Choose a Genus--</option>
+                      </select>
                     </div>
                   </div>
                   <div class="form-group">
@@ -181,7 +211,7 @@
                   <div class="col-sm-10">
                     <select class="states" style="width: 430px ;  height:34px" id="id_state" name="id_state" action="{{ route('add-location') }} value="{{ old('id_state') }}" autofocus>
                     @if(isset($states))
-                      <option value="0" disabled="true" selected="true">--Choouse a State--</option>
+                      <option value="0" disabled="true" selected="true">--Choose a State--</option>
                       @foreach($states as $state)
                         <option value="{{$state -> id_state}}">{{$state -> name_state}}</option>
                       @endforeach
@@ -194,7 +224,7 @@
                   <label for="id_province" class="col-sm-2 control-label">Province</label>
                   <div class="col-sm-10">
                     <select class="prov" style="width: 430px ;  height:34px" id="id_province" name="id_province" action="{{ route('add-prov') }}" value="{{ old('id_province') }}" autofocus>
-                      <option value="0" disabled="true" selected="true">--Choouse a Province--</option>
+                      <option value="0" disabled="true" selected="true">--Choose a Province--</option>
                     </select>
                   </div>
                 </div>
@@ -202,32 +232,34 @@
                   <label for="inputEmail3" class="col-sm-2 control-label">City</label>
                   <div class="col-sm-10">
                     <select class="city" style="width: 430px ;  height:34px" id="id_city" name="id_city" action="{{ route('add-city') }}" value="{{ old('id_city') }}" autofocus>
-                      <option value="0" disabled="true" selected="true">--Choouse a City--</option>
+                      <option value="0" disabled="true" selected="true">--Choose a City--</option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">District</label>
                   <div class="col-sm-10">
-                    <input type="" class="form-control" id="" placeholder="district">
+                    <select class="district" style="width: 430px ;  height:34px" id="id_district" name="id_district" action="{{ route('add-district') }}" value="{{ old('id_district') }}" autofocus>
+                      <option value="0" disabled="true" selected="true">--Choose a District--</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Latitude</label>
                   <div class="col-sm-10">
-                    <input type="" class="form-control" id="" placeholder="latitude">
+                    <input value='{{ $input["latitude"] or ""}}' type="latitude" class="form-control" id="" name="latitude" placeholder="latitude">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Longitude</label>
                   <div class="col-sm-10">
-                    <input type="" class="form-control" id="" placeholder="longitude">
+                    <input value='{{ $input["longitude"] or ""}}' type="longitude" class="form-control" id="" name="longitude" placeholder="longitude">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Atitude</label>
                   <div class="col-sm-10">
-                    <input type="" class="form-control" id="" placeholder="atitude">
+                    <input value='{{ $input["atitude"] or ""}}' type="atitude" class="form-control" id="" name="atitude" placeholder="atitude">
                   </div>
                 </div>
                   
@@ -396,6 +428,39 @@
                             console.log(op);
                             $('.city').html(" ");
                             $('.city').append(op);
+                        },
+                        error:function(){
+
+                        }
+                     });
+                });
+                $(document).on('change','.city',function(){
+                    console.log('{!!URL::to('/add-district')!!}');
+
+                    var id_city=$(this).val();
+                    console.log(id_city);
+                    var div=$(this).parent();
+                    console.log(id_city);
+
+                    var op=" ";
+
+                     $.ajax({
+                        type:'get',
+                        url:'{!!URL::to('/add-district')!!}',
+                      //  url: 'herbarium-management/weedherba/create-findProv',
+                        data:{'id':id_city},
+                        // console.log(state_id);
+                        success:function(data){
+                            console.log('success');
+
+                            console.log(data);
+                           op+='<option value="0" selected="disabled">--Choose a District--</option>';
+                            for(var i=0;i<data.length;i++){
+                                op+='<option value="'+data[i].id_district+'">'+data[i].name_district+'</option>';
+                            }
+                            console.log(op);
+                            $('.district').html(" ");
+                            $('.district').append(op);
                         },
                         error:function(){
 
