@@ -14,9 +14,9 @@ use App\State;
 use App\Province;
 use App\City;
 use App\District;
-// use App\Ordo;
-// use App\Family;
-// use App\Genus;
+use App\Ordo;
+use App\Family;
+use App\Genus;
 // use App\City;
 // use App\District;
 use App\Isolat;
@@ -24,7 +24,7 @@ use App\Location;
 // use App\Photo;
 // use App\Province;
 // use App\Raiser;
-// use App\Species;
+use App\Species;
 // use App\State;
 // use App\Storage;
 // use App\Updating;
@@ -74,52 +74,101 @@ class FungiController extends Controller
 
         $error_msg = "";
 
-        $isolate = new Isolat;
-
-        if($isolate->validate($input)) {
-            try {
-                $isolate = new Isolat;
-                $isolate->code_cendawan = $input["code_cendawan"];
-                $isolate->name_cendawan = $input["name_cendawan"];
-                $isolate->quantity_cendawan = $input["quantity_cendawan"];
-                $isolate->label_cendawan = $input["label_cendawan"];
-                $isolate->utilization = $input["utilization"];
+        if ($request->isMethod('post')) {
 
 
-                $location = new Location;
-                $location->latitude = $input["latitude"];
-                $location->longitude = $input["longitude"];
-                $location->atitude = $input["atitude"];
-                $location->district_id = $input["id_district"];
-                $location->save();
+            $isolate = new Isolat;
 
-                $species = new Species;
-                $species->name_substrat = $input["name_substrat"];
-                $species->ecology = $input["ecology"];
-                $species->biology = $input["biology"];
-                $species->physiology = $input["physiology"];
-                $species->mycotoxin = $input["mycotoxin"];
-
-                $substrat = new Substrat;
-                $substrat->name_substrat = $input["name_substrat"];
-                $substrat->ecology = $input["ecology"];
-                $substrat->biology = $input["biology"];
-                $substrat->physiology = $input["physiology"];
-                $substrat->mycotoxin = $input["mycotoxin"];
-                $substrat->save();
-
-                $isolate->location_id = $location->id_location;
-                $isolate->save();
+            if($isolate->validate($input)) {
+                try {
+                    $isolate = new Isolat;
+                    $isolate->code_cendawan = $input["code_cendawan"];
+                    $isolate->name_cendawan = $input["name_cendawan"];
+                    $isolate->quantity_cendawan = $input["quantity_cendawan"];
+                    $isolate->label_cendawan = $input["label_cendawan"];
+                    $isolate->utilization = $input["utilization"];
 
 
-                return redirect('fungi_entri/form-add');
+                    $location = new Location;
+                    $location->latitude = $input["latitude"];
+                    $location->longitude = $input["longitude"];
+                    $location->atitude = $input["atitude"];
+                    $location->district_id = $input["id_district"];
+                    $location->save();
+
+                    
+
+                    $substrat = new Substrat;
+                    $substrat->name_substrat = $input["name_substrat"];
+                    $substrat->ecology = $input["ecology"];
+                    $substrat->biology = $input["biology"];
+                    $substrat->physiology = $input["physiology"];
+                    $substrat->mycotoxin = $input["mycotoxin"];
+                    $substrat->save();
+
+                    $species = new Species;
+                    $species->name_species = $input["name_cendawan"];
+                    $species->description_species = $input["description_species"];
+                    $species->substrat_id = $substrat->id_substrat;
+
+                    if(!isset($input['name_genus'])) $species->genus_id = $input["id_genus"];
+                    else {
+                        $genus = new Genus;
+                        $genus->name_genus = $input["name_genus"];
+                        if(!isset($input['name_family'])) $genus->family_id = $input["id_family"];
+                        else {
+                            $family = new Family;
+                            $family->name_family = $input["name_family"];
+                            if(!isset($input['name_ordo'])) $family->ordo_id = $input["id_ordo"];
+                            else {
+                                $ordo = new Ordo;
+                                $ordo->name_ordo = $input["name_ordo"];
+                                if(!isset($input['name_class'])) $ordo->class_id = $input["id_class"];
+                                else {
+                                    $class = new Classes;
+                                    $class->name_class = $input["name_class"];
+                                    if(!isset($input['name_divisi'])) $class->divisi_id = $input["id_divisi"];
+                                    else {
+                                        $divisi = new Divisi;
+                                        $divisi->name_divisi = $input["name_divisi"];
+                                        $divisi->save();
+                                        $class->divisi_id = $divisi->id_divisi;
+                                    }
+                                    $class->save();
+                                    $ordo->class_id = $class->id_class;
+
+                                }
+                                $ordo->save();
+                                $family->ordo_id = $ordo->id_ordo;
+
+                            }
+                            $family->save();
+                            $genus->family_id = $family->id_family;
+                        }
+                        $genus->save();
+                        $species->genus_id = $genus->id_genus;
+                    }
+
+                    $species->save();
+
+                    $isolate->species_id = $species->id_species;
+
+
+
+                    $isolate->location_id = $location->id_location;
+                    $isolate->save();
+
+
+                    return redirect('fungi-add');
+                }
+                catch(\Exception $e){
+                   // do task when error
+                   $error_msg = $e->getMessage();   // insert query
+                }
             }
-            catch(\Exception $e){
-               // do task when error
-               $error_msg = $e->getMessage();   // insert query
-            }
+            else $error_msg = $isolate->v->messages()->first(); 
+
         }
-        else $error_msg = $isolate->v->messages()->first(); 
 
 
         // $substrat = new Substrat;       

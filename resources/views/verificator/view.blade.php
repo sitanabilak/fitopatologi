@@ -271,7 +271,10 @@
                   </div>
                   <!-- /.box-body -->
                 </div>
-                <a type="" class="btn bg-olive btn-flat pull-right" style="margin-right:30px;" value="" href="">Verified and Publish</a>
+                <form action="" method="post">
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  <button name="id" type="submit" class="btn bg-olive btn-flat pull-right" style="margin-right:30px;" value="{{$isolat_cendawan->id_cendawan}}" href="">Verified and Publish</button>
+                </form>
                 <a type="" class="btn btn-default btn-flat pull-right" style="margin-right:30px;" href="">Comment</a>
             </div>
       </div>

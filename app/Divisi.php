@@ -8,6 +8,7 @@ use Validator;
 class Divisi extends Model
 {
     protected $table = 'divisi';
+    protected $primaryKey = 'id_divisi';
     public $timestamps = false;
 
      private $rules = array(

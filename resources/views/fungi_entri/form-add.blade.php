@@ -114,12 +114,102 @@
                             console.log('success');
 
                             console.log(data);
-                           op+='<option value="0" selected="disabled">--Choose a Province--</option>';
+                           op+='<option value="0" selected="disabled">--Choose a Class--</option>';
                             for(var i=0;i<data.length;i++){
                                 op+='<option value="'+data[i].id_class+'">'+data[i].name_class+'</option>';
                             }
                             $('.class').html(" ");
                             $('.class').append(op);
+                        },
+                        error:function(){
+
+                        }
+                     }); 
+                });
+
+                $(document).on('change','.class',function(){
+                    console.log("hmm its change");
+
+                    var id=$(this).val();
+                    console.log(id);
+                    var div=$(this).parent();
+
+                    var op=" ";
+
+                     $.ajax({
+                        type:'get',
+                        url:'{!!URL::to('/add-ordo')!!}',
+                        data:{'id':id},
+                        success:function(data){
+                            console.log('success');
+
+                            console.log(data);
+                           op+='<option value="0" selected="disabled">--Choose a Ordo--</option>';
+                            for(var i=0;i<data.length;i++){
+                                op+='<option value="'+data[i].id_ordo+'">'+data[i].name_ordo+'</option>';
+                            }
+                            $('.ordo').html(" ");
+                            $('.ordo').append(op);
+                        },
+                        error:function(){
+
+                        }
+                     }); 
+                });
+
+                $(document).on('change','.ordo',function(){
+                    console.log("hmm its change");
+
+                    var id=$(this).val();
+                    console.log(id);
+                    var div=$(this).parent();
+
+                    var op=" ";
+
+                     $.ajax({
+                        type:'get',
+                        url:'{!!URL::to('/add-family')!!}',
+                        data:{'id':id},
+                        success:function(data){
+                            console.log('success');
+
+                            console.log(data);
+                           op+='<option value="0" selected="disabled">--Choose a Family--</option>';
+                            for(var i=0;i<data.length;i++){
+                                op+='<option value="'+data[i].id_family+'">'+data[i].name_family+'</option>';
+                            }
+                            $('.family').html(" ");
+                            $('.family').append(op);
+                        },
+                        error:function(){
+
+                        }
+                     }); 
+                });
+
+                $(document).on('change','.family',function(){
+                    console.log("hmm its change");
+
+                    var id=$(this).val();
+                    console.log(id);
+                    var div=$(this).parent();
+
+                    var op=" ";
+
+                     $.ajax({
+                        type:'get',
+                        url:'{!!URL::to('/add-genus')!!}',
+                        data:{'id':id},
+                        success:function(data){
+                            console.log('success');
+
+                            console.log(data);
+                           op+='<option value="0" selected="disabled">--Choose a Genus--</option>';
+                            for(var i=0;i<data.length;i++){
+                                op+='<option value="'+data[i].id_genus+'">'+data[i].name_genus+'</option>';
+                            }
+                            $('.genus').html(" ");
+                            $('.genus').append(op);
                         },
                         error:function(){
 
@@ -133,6 +223,7 @@
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
     CKEDITOR.replace('editor1');
+    CKEDITOR.replace('editor2');
     //bootstrap WYSIHTML5 - text editor
     $(".textarea").wysihtml5();
   });

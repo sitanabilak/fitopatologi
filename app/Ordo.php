@@ -8,6 +8,7 @@ use Validator;
 class Ordo extends Model
 {
     protected $table = 'ordo';
+    protected $primaryKey = 'id_ordo';
     public $timestamps = false;
 
      private $rules = array(

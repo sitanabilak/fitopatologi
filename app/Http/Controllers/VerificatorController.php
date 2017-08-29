@@ -38,6 +38,12 @@ class VerificatorController extends Controller
     {
         $id_isolat = $request->id;
         $isolat_cendawan = Isolat::where('id_cendawan', $id_isolat)->first();
+        if ($request->isMethod('post')) {
+            $isolat_cendawan->status_verifiedData=1;
+            $isolat_cendawan->save();
+        }
+
+
         $species = Species::where('id_species', $isolat_cendawan->species_id)->first();
         $substrat = Substrat::where('id_substrat', $species->substrat_id)->first();
         $location = Location::where('id_location', $isolat_cendawan->location_id)->first();

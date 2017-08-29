@@ -81,11 +81,7 @@
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-3 control-label">Description</label>
                     <div class="col-sm-8">
-                      <form>
-                    <textarea id="editor2" name="editor1" rows="10" cols="80">
-                                            
-                    </textarea>
-                    </form>
+                      <textarea id="editor2" name="description_species" rows="10" cols="80">{{$input["description_species"] or ""}}</textarea>
                     </div>
                   </div>
 

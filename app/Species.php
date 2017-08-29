@@ -8,6 +8,7 @@ use Validator;
 class Species extends Model
 {
     protected $table = 'species';
+    protected $primaryKey = 'id_species';
     public $timestamps = false;
 
      private $rules = array(

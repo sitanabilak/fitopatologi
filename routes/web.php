@@ -64,5 +64,6 @@ Route::get('/operator-fungi-edit', 'OperatorController@opedit')->name('o-fungi-e
 
 Route::get('/verificator', 'VerificatorController@index')->name('v-fungi-mng');
 Route::get('/verificator-fungi-view', 'VerificatorController@view')->name('v-fungi-view');
+Route::post('/verificator-fungi-view', 'VerificatorController@view');
 
-Route::get('/delete', 'AdminController@destroy')->name('delete');
+Route::delete('/delete', 'AdminController@destroy')->name('delete');

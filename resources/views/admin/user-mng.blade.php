@@ -81,7 +81,7 @@
                 <input type="hidden" name="_method" value="delete">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <button type="submit" class="btn btn-sm btn-primary" href="{{ route('fungi-edit') }}" onClick="edit_user({{ $user->id_users }})">Edit</button>
-                <a type="submit" data-method="delete" class="btn btn-sm btn-danger" href="delete/{{ $users->id_users }}">Delete</a>
+                <a type="button" action="{{ route('/delete/destroy', [$delete->id_users])}}" data-method="delete" class="btn btn-sm btn-danger">Delete</a>
                 </div>
               </td>
             </tr>
